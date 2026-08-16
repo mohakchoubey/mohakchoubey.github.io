@@ -1,265 +1,937 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Some Useful Websites By Mohak</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohak Choubey — Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  :root {
+    --bg: #080c14;
+    --surface: rgba(255,255,255,0.04);
+    --surface-hover: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.08);
+    --border-glow: rgba(99,179,237,0.3);
+    --accent: #63b3ed;
+    --accent2: #9f7aea;
+    --accent3: #68d391;
+    --text: #e2e8f0;
+    --muted: #718096;
+    --heading: #f7fafc;
+    --card-bg: rgba(13,20,35,0.7);
+  }
 
+  html { scroll-behavior: smooth; }
 
-<link rel="icon" type="image/png" href="logo.png" />
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  /* ── BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(99,179,237,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(159,122,234,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-<link rel="stylesheet" href="assets/style.css">
+  /* grid noise */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99,179,237,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,179,237,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    height: 60px;
+    backdrop-filter: blur(16px);
+    background: rgba(8,12,20,0.8);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6% 60px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .hero-name {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .hero-name span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--muted);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--heading);
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #080c14;
+  }
+  .btn-primary:hover { background: #90cdf4; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── SECTION HEADERS ── */
+  .sec-header {
+    padding: 80px 6% 40px;
+  }
+
+  .sec-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .sec-title span { color: var(--accent); }
+
+  /* ── WEBSITES GRID ── */
+  #websites .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    padding: 0 6% 80px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-card {
+    background: var(--bg);
+    padding: 28px;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .site-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .site-card:hover::before { opacity: 1; }
+
+  .site-card:hover .site-arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+  .site-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .site-name {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -0.01em;
+  }
+
+  .site-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .site-arrow {
+    font-size: 18px;
+    color: var(--border);
+    align-self: flex-end;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  /* ── TOOLIFY TOOLS ── */
+  #tools {
+    padding: 0 6% 80px;
+  }
+
+  .tools-categories { display: flex; flex-direction: column; gap: 36px; }
+
+  .tool-category-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-left: 2px solid var(--accent2);
+    padding-left: 10px;
+    margin-bottom: 14px;
+  }
+
+  .tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+
+  .tool-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(99,179,237,0.06);
+  }
+
+  .tool-chip .chip-icon { font-size: 14px; }
+
+  /* ── EXPERIMENTS ── */
+  #experiments { padding: 0 6% 80px; }
+
+  .exp-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .filter-btn {
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.03em;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(99,179,237,0.06);
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .exp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s;
+    backdrop-filter: blur(8px);
+  }
+
+  .exp-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(99,179,237,0.08);
+  }
+
+  .exp-icon { font-size: 24px; }
+
+  .exp-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 2px;
+  }
+
+  .cat-visualization { background: rgba(99,179,237,0.12); color: var(--accent); }
+  .cat-game { background: rgba(159,122,234,0.12); color: var(--accent2); }
+  .cat-ai { background: rgba(104,211,145,0.12); color: var(--accent3); }
+
+  .exp-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .exp-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  /* ── GAMES ── */
+  #games { padding: 0 6% 80px; }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .game-card {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 8px;
+  }
+
+  .game-card:hover {
+    border-color: rgba(159,122,234,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(159,122,234,0.1);
+  }
+
+  .game-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .game-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .game-desc { font-size: 12px; color: var(--muted); line-height: 1.5; flex: 1; }
+
+  .play-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--accent2);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* ── SOCIALS ── */
+  #connect {
+    padding: 80px 6%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .connect-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+  }
+
+  .connect-sub { color: var(--muted); font-size: 14px; max-width: 400px; }
+
+  .social-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 24px 6%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 6%;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; }
+    #websites .grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .cursor { animation: none; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="container hero">
-      <h1>Some Useful Websites <br> By <span>Mohak</span></h1>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">mohakchoubey.github.io</span>
+  <div class="nav-links">
+    <a href="#websites">Websites</a>
+    <a href="#tools">Tools</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#games">Games</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
 
-      <p>
-        A collection of useful websites, projects and channels made by Mohak.
-        Explore tools, fun websites, educational content and creative projects
-        in one place.
-      </p>
-
-      <a href="#websites" class="scroll-btn">
-        Explore Now
-      </a>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">indie developer · vibe coder · indore, india</div>
+  <h1 class="hero-name">Mohak<br><span>Choubey</span></h1>
+  <p class="hero-tagline">
+    <span id="typed"></span><span class="cursor"></span>
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Web Projects</span>
     </div>
-  </header>
+    <div class="stat">
+      <span class="stat-num">21+</span>
+      <span class="stat-label">Toolify Tools</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">11+</span>
+      <span class="stat-label">Experiments</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4+</span>
+      <span class="stat-label">Games Built</span>
+    </div>
+  </div>
+  <div class="hero-ctas">
+    <a href="https://github.com/mohakdev1220" target="_blank" class="btn btn-primary">GitHub ↗</a>
+    <a href="https://youtube.com/@MOHAKCHOUBEY" target="_blank" class="btn btn-ghost">YouTube ↗</a>
+    <a href="#websites" class="btn btn-ghost">View Projects</a>
+  </div>
+</section>
 
-  <!-- WEBSITES -->
-
-  <section id="websites">
-    <div class="container">
-
-      <h2 class="section-title fade">Websites</h2>
-
-      <div class="cards">
-
-        <div class="card fade">
-          <h3>Toolify</h3>
-
-          <p>
-            A collection of smart and useful online tools including AI tools,
-            chatbot features and productivity utilities.
-          </p>
-
-          <a href="https://mohakchoubey.github.io/toolify/"
-             target="_blank">
-             Visit Site
-          </a>
-        </div>
-        
-        <div class="card fade">
-          <h3>DailyEcho </h3>
-
-          <p>
-           A local/online notes and memories saving website with many options
-          </p>
-
-          <a href="https://mohakdev1220.github.io/dailyecho"
-             target="_blank">
-             Visit Site
-          </a>
-        </div>
-
-        <div class="card fade">
-          <h3>Chrome Portal</h3>
-
-          <p>
-        The purpose of this website it to help a user who wants to organise links of different websites.
-          </p>
-
-          <a href="https://mohakdev1220.github.io/chromeportal"
-             target="_blank">
-             Visit Site
-          </a>
-        </div>
-
-        <div class="card fade">
-          <h3>Gatividhiya</h3>
-
-          <p>
-          This websites helps us analyse and track our daily activity using pie chart and graphical representation.
-          </p>
-
-          <a href="https://mohakdev1220.github.io/gatividhiya"
-             target="_blank">
-             Visit Site
-          </a>
-        </div>
-
-        <div class="card fade">
-          <h3>Facts</h3>
-
-          <p>
-            Explore interesting and surprising facts from science, technology,
-            history and daily life.
-          </p>
-
-          <a href="https://mohakdev1220.github.io/facts"
-             target="_blank">
-             Visit Site
-          </a>
-        </div>
-      <div class="card fade">
-  <h3>Telebey</h3>
-
-  <p>
-    A modern messaging platform with groups, chats, file sharing and a clean user experience.
-  </p>
-
-  <a href="https://mohakdev1220.github.io/telebey"
-     target="_blank">
-     Visit Site
-  </a>
+<!-- WEBSITES -->
+<div class="sec-header reveal">
+  <p class="sec-eyebrow">Full Projects</p>
+  <h2 class="sec-title">Websites <span>&</span> Platforms</h2>
 </div>
+<section id="websites">
+  <div class="grid">
+    <a class="site-card reveal" href="https://mohakchoubey.github.io/toolify/" target="_blank">
+      <span class="site-tag">Productivity · AI</span>
+      <span class="site-name">Toolify</span>
+      <span class="site-desc">A collection of 21+ smart online tools — AI chatbot, maps, weather, PDF maker, QR generator, calculators and more.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/dailyecho" target="_blank">
+      <span class="site-tag">Productivity</span>
+      <span class="site-name">Daily Echo</span>
+      <span class="site-desc">A private notes and memories platform with local and cloud save options, clean journaling experience.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/chromeportal" target="_blank">
+      <span class="site-tag">Utility</span>
+      <span class="site-name">Chrome Portal</span>
+      <span class="site-desc">A link organiser and browser dashboard — keep all your important sites in one place with Firebase sync.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/gatividhiya" target="_blank">
+      <span class="site-tag">Analytics</span>
+      <span class="site-name">Gatividhiya</span>
+      <span class="site-desc">Life analytics dashboard with Groq AI, streak tracking, pie charts, and an Aurora Glass dark/light theme.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/telebey" target="_blank">
+      <span class="site-tag">Social</span>
+      <span class="site-name">Telebey</span>
+      <span class="site-desc">A modern Telegram-style messaging platform with group chats, file sharing, and a clean UI experience.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/personel_os" target="_blank">
+      <span class="site-tag">Productivity</span>
+      <span class="site-name">Personal OS</span>
+      <span class="site-desc">A 16-page personal productivity OS in vanilla JS — tasks, notes, files, and daily workflows in one dashboard.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/finance" target="_blank">
+      <span class="site-tag">Finance</span>
+      <span class="site-name">FinFlow</span>
+      <span class="site-desc">Personal finance platform with EMI calculator, Chart.js visualizations, and CSV import/export.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/formulas/" target="_blank">
+      <span class="site-tag">Education</span>
+      <span class="site-name">Formulas (Sutra)</span>
+      <span class="site-desc">174 scientific and mathematical formulas from NCERT class 6–12 with KaTeX rendering and fuzzy search.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://gymplannerwithalarm.github.io/discipline/" target="_blank">
+      <span class="site-tag">Health</span>
+      <span class="site-name">IRONLOG</span>
+      <span class="site-desc">A privacy-focused gym planner with built-in alarms, rest timers, and Google cloud sync for workout tracking.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/youtube-search/" target="_blank">
+      <span class="site-tag">Utility</span>
+      <span class="site-name">YouTube Helper</span>
+      <span class="site-desc">Search YouTube without opening its distraction-heavy homepage. Stay focused, find what you need.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/facts" target="_blank">
+      <span class="site-tag">Education</span>
+      <span class="site-name">Facts</span>
+      <span class="site-desc">Explore interesting and surprising facts from science, technology, history and daily life.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+    <a class="site-card reveal" href="https://mohakdev1220.github.io/experiments" target="_blank">
+      <span class="site-tag">Research</span>
+      <span class="site-name">Experiments</span>
+      <span class="site-desc">A curated portfolio of experimental projects — built for research, curiosity, and pushing browser limits.</span>
+      <span class="site-arrow">↗</span>
+    </a>
+  </div>
+</section>
 
-<div class="card fade">
-  <h3>Personal OS</h3>
-
-  <p>
-    A personal productivity dashboard designed to organize tasks, notes, files and daily workflows.
-  </p>
-
-  <a href="https://mohakdev1220.github.io/personel_os"
-     target="_blank">
-     Visit Site
-  </a>
+<!-- TOOLIFY TOOLS -->
+<div class="sec-header reveal">
+  <p class="sec-eyebrow">Inside Toolify</p>
+  <h2 class="sec-title">21<span>+</span> Built-in Tools</h2>
 </div>
-        
-<div class="card fade">
-  <h3>Experiments</h3>
-
-  <p>
-    This website contains some project which are built for research purpose.
-  </p>
-
-  <a href="https://mohakdev1220.github.io/experiments"
-     target="_blank">
-     Visit Site
-  </a>
-</div>
-        <div class="card fade">
-  <h3>Gym planner</h3>
-
-  <p>
-   IRONLOG is a local, privacy-focused gym planner and workout tracker website that features customizable built-in alarms, rest timers, and secure Google cloud synchronization to help you track your fitness progress.
-  </p>
-
-  <a href="https://gymplannerwithalarm.github.io/discipline/"
-     target="_blank">
-     Visit Site
-  </a> 
-</div>
-
-         <div class="card fade">
-  <h3> Youtube helper </h3>
-
-  <p>
-   This tool help us to search anything on youtube without actually opening youtube's homepage. It prevent distractions caused by homepage's videos.
-  </p>
-
-  <a href="https://mohakdev1220.github.io/youtube-search/"
-     target="_blank">
-     Visit Site
-  </a>
-</div>
-       
-        
-<div class="card fade">
-  <h3>Finance</h3>
-
-  <p>
-    A finance platform featuring calculators, market tools and resources to help manage money more effectively.
-  </p>
-
-  <a href="https://mohakdev1220.github.io/finance"
-     target="_blank">
-     Visit Site
-  </a>
-</div>
-        <div class="card fade">
-  <h3> Formulas </h3>
-
-  <p>
- A formulas website which contains approx 174 scientific and mathematical formulas (class 6 - 12th ncert based)
-  </p>
-
-  <a href="https://mohakdev1220.github.io/formulas/"
-     target="_blank">
-     Visit Site
-  </a>
-</div>
-  </section>
-
-  <!-- YOUTUBE -->
-
-  <section id="youtube">
-    <div class="container">
-
-      <h2 class="section-title fade">YouTube</h2>
-
-      <div class="cards">
-
-        <div class="card fade">
-          <h3>MOHAKCHOUBEY</h3>
-
-          <p>
-            Watch videos related to coding, projects, creativity, experiments
-            and useful internet content.
-          </p>
-
-          <a href="https://youtube.com/@MOHAKCHOUBEY"
-             target="_blank">
-             Open Channel
-          </a>
-        </div>
-
+<section id="tools">
+  <div class="tools-categories">
+    <div class="reveal">
+      <p class="tool-category-label">Essentials</p>
+      <div class="tools-row">
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/workspace-assistant-rulebased-ai-chatbot" target="_blank"><span class="chip-icon">🤖</span> Assistant Chatbot</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/AI-Chatbot-learning-based-model" target="_blank"><span class="chip-icon">֎</span> AI Chatbot</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/maps-by-toolify" target="_blank"><span class="chip-icon">🗺️</span> Maps by Toolify</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/weather" target="_blank"><span class="chip-icon">☀️</span> Weather</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/digital-notebook" target="_blank"><span class="chip-icon">📄</span> Notepad</a>
       </div>
-
     </div>
-  </section>
-
-  <!-- GITHUB -->
-
-  <section id="github">
-    <div class="container">
-
-      <h2 class="section-title fade">GitHub</h2>
-
-      <div class="cards">
-
-        <div class="card fade">
-          <h3>Mohak's GitHub</h3>
-
-          <p>
-            Explore source codes, web projects, experiments and creative ideas
-            uploaded by Mohak.
-          </p>
-
-          <a href="https://github.com/mohakdev1220"
-             target="_blank">
-             View GitHub
-          </a>
-        </div>
-
+    <div class="reveal">
+      <p class="tool-category-label">Productivity</p>
+      <div class="tools-row">
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/calculator" target="_blank"><span class="chip-icon">🧮</span> Calculator</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/trip-planner-tool-by-toolify" target="_blank"><span class="chip-icon">🧳</span> Trip Planner</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/calendar" target="_blank"><span class="chip-icon">📅</span> Calendar</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/grammar" target="_blank"><span class="chip-icon">✍️</span> Paragraph Editor</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/WebRTC-messaging-site-E2EE" target="_blank"><span class="chip-icon">📩</span> P2P Messaging</a>
       </div>
-
     </div>
-  </section>
+    <div class="reveal">
+      <p class="tool-category-label">Utilities</p>
+      <div class="tools-row">
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/qr" target="_blank"><span class="chip-icon">🔍</span> QR Maker</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/binary-to-text-converter-by-mohak" target="_blank"><span class="chip-icon">0️⃣</span> Binary Converter</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/unit-converter" target="_blank"><span class="chip-icon">📏</span> Unit Converter</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/speech" target="_blank"><span class="chip-icon">🗣️</span> Speech</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/pdf" target="_blank"><span class="chip-icon">📄</span> PDF Maker</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/password" target="_blank"><span class="chip-icon">🔒</span> Password Gen</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="tool-category-label">Time & Clock</p>
+      <div class="tools-row">
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/time" target="_blank"><span class="chip-icon">🕓</span> Clock</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/time#worldclock-section" target="_blank"><span class="chip-icon">🌍</span> World Clock</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/time#timer-section" target="_blank"><span class="chip-icon">⌛</span> Timer</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/time#stopwatch-section" target="_blank"><span class="chip-icon">⏱️</span> Stopwatch</a>
+        <a class="tool-chip" href="https://mohakchoubey.github.io/toolify/time#alarm-section" target="_blank"><span class="chip-icon">⏰</span> Alarm</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    © 2026 Some Useful Websites By Mohak • Built with HTML, CSS & JavaScript
-  </footer>
+<div class="divider"></div>
 
-  <script src="assets/script.js"></script>
+<!-- EXPERIMENTS -->
+<div class="sec-header reveal">
+  <p class="sec-eyebrow">Research & Experiments</p>
+  <h2 class="sec-title">Weird <span>&</span> Wonderful</h2>
+</div>
+<section id="experiments">
+  <div class="exp-filter">
+    <button class="filter-btn active" onclick="filterExp('all', this)">All</button>
+    <button class="filter-btn" onclick="filterExp('visualization', this)">Visualization</button>
+    <button class="filter-btn" onclick="filterExp('game', this)">Games</button>
+    <button class="filter-btn" onclick="filterExp('ai', this)">AI / Camera</button>
+  </div>
+  <div class="exp-grid" id="expGrid">
 
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/Rain-simulation" target="_blank" data-cat="visualization">
+      <span class="exp-icon">🌧️</span>
+      <span class="exp-cat cat-visualization">Visualization</span>
+      <span class="exp-name">Rain Simulation</span>
+      <span class="exp-desc">Physics-based canvas rain with splash effects and procedurally generated lofi audio.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/solar-system" target="_blank" data-cat="visualization">
+      <span class="exp-icon">🌍</span>
+      <span class="exp-cat cat-visualization">Visualization</span>
+      <span class="exp-name">Solar System — ORBITA 3D</span>
+      <span class="exp-desc">Immersive 3D space exploration with accurately tilted planets, soundscapes, and live astronomical telemetry.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/proximity" target="_blank" data-cat="visualization">
+      <span class="exp-icon">🌐</span>
+      <span class="exp-cat cat-visualization">Visualization</span>
+      <span class="exp-name">Proximity</span>
+      <span class="exp-desc">Discover your distance from the world's most iconic places — distances, travel times, geography.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/sound-mixer" target="_blank" data-cat="visualization">
+      <span class="exp-icon">🎧</span>
+      <span class="exp-cat cat-visualization">Visualization</span>
+      <span class="exp-name">Sound Mixer Ambient</span>
+      <span class="exp-desc">Mix sounds of a railway station, rain, highway, chai-wala, and crowd to create your own ambient scene.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/bl" target="_blank" data-cat="ai">
+      <span class="exp-icon">📩</span>
+      <span class="exp-cat cat-ai">AI / Tech</span>
+      <span class="exp-name">P2P Messaging (WebRTC)</span>
+      <span class="exp-desc">Direct browser-to-browser messaging via WebRTC — no server, no middleman, works across the internet.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/mood-mirror" target="_blank" data-cat="ai">
+      <span class="exp-icon">📷</span>
+      <span class="exp-cat cat-ai">AI / Camera</span>
+      <span class="exp-name">Mood Mirror</span>
+      <span class="exp-desc">Face detection that reads your mood — happy, sad, angry, fearful, and more, in real time.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/wake-up-and-study-alarm" target="_blank" data-cat="ai">
+      <span class="exp-icon">👁️</span>
+      <span class="exp-cat cat-ai">AI / Camera</span>
+      <span class="exp-name">Study Helper Webcam</span>
+      <span class="exp-desc">Detects whether your eyes are closed and wakes you up with a sound if you fall asleep while studying.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/shoot" target="_blank" data-cat="ai">
+      <span class="exp-icon">🎯</span>
+      <span class="exp-cat cat-ai">AI / Camera</span>
+      <span class="exp-name">Auto-Aimer</span>
+      <span class="exp-desc">Detects your forehead and auto-aims on it like a game overlay. Purely experimental, nothing harmful.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/Bmw-revv-experiments-by-mohak" target="_blank" data-cat="game">
+      <span class="exp-icon">🚗</span>
+      <span class="exp-cat cat-game">Game</span>
+      <span class="exp-name">BMW REVV</span>
+      <span class="exp-desc">Rev a virtual BMW engine in your browser. Not a real BMW sound, but surprisingly satisfying.</span>
+    </a>
+
+    <a class="exp-card reveal" href="https://mohakdev1220.github.io/experiments/physics/projectile-motion-game-experiments-by-mohak" target="_blank" data-cat="game">
+      <span class="exp-icon">🎮</span>
+      <span class="exp-cat cat-game">Game</span>
+      <span class="exp-name">Projectile Motion Game</span>
+      <span class="exp-desc">A physics and math powered game that plays different sounds as you play. Genuinely fun.</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- GAMES -->
+<div class="sec-header reveal">
+  <p class="sec-eyebrow">Inside Toolify Games</p>
+  <h2 class="sec-title">Games <span>Collection</span></h2>
+</div>
+<section id="games">
+  <div class="games-grid">
+    <a class="game-card reveal" href="https://mohakchoubey.github.io/toolify/games/1712.html" target="_blank">
+      <span class="game-label">Arcade</span>
+      <span class="game-name">Catch The Falling Blocks</span>
+      <span class="game-desc">Catch falling blocks, avoid hazards and survive for as long as possible.</span>
+      <span class="play-badge">▶ Play Game</span>
+    </a>
+    <a class="game-card reveal" href="https://mohakchoubey.github.io/toolify/games/Neon_flap.html" target="_blank">
+      <span class="game-label">Arcade</span>
+      <span class="game-name">Neon Flap</span>
+      <span class="game-desc">Navigate through neon obstacles and chase high scores. Addictive.</span>
+      <span class="play-badge">▶ Play Game</span>
+    </a>
+    <a class="game-card reveal" href="https://mohakchoubey.github.io/toolify/games/flightsimulator" target="_blank">
+      <span class="game-label">Simulator</span>
+      <span class="game-name">Flight Simulator</span>
+      <span class="game-desc">Fly over snow-covered mountains. Built in 30 minutes. Surprisingly immersive.</span>
+      <span class="play-badge">▶ Play Game</span>
+    </a>
+    <a class="game-card reveal" href="https://mohakchoubey.github.io/toolify/games/neon_district/main" target="_blank">
+      <span class="game-label">RPG · In Dev</span>
+      <span class="game-name">Neon District</span>
+      <span class="game-desc">A futuristic cyberpunk city adventure in HTML5 Canvas. Currently in development.</span>
+      <span class="play-badge">▶ Explore</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <p class="sec-eyebrow" style="text-align:center">Let's Connect</p>
+  <h2 class="connect-title">Find me online</h2>
+  <p class="connect-sub">Source codes, videos, experiments — everything is open and public.</p>
+  <div class="social-links">
+    <a href="https://github.com/mohakdev1220" target="_blank" class="btn btn-primary">GitHub ↗</a>
+    <a href="https://youtube.com/@MOHAKCHOUBEY" target="_blank" class="btn btn-ghost">YouTube ↗</a>
+    <a href="https://mohakchoubey.github.io/toolify/" target="_blank" class="btn btn-ghost">Toolify ↗</a>
+    <a href="https://mohakdev1220.github.io/experiments" target="_blank" class="btn btn-ghost">Experiments ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Mohak Choubey — mohakchoubey.github.io</span>
+  <span>Built with vanilla HTML · Indore, India</span>
+</footer>
+
+<script>
+  // Typing animation
+  const phrases = [
+    'building things with vanilla JS',
+    'vibe coding since forever',
+    'firebase · supabase · groq api',
+    'dark glassmorphism enthusiast',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed');
+
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 40 : 70);
+  }
+  type();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Experiment filter
+  function filterExp(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.exp-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? 'flex' : 'none';
+    });
+  }
+</script>
 </body>
 </html>
